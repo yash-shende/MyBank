@@ -1,7 +1,7 @@
 <?php
 header('Access-Control-Allow-Origin:*');
 header('Content-Type:application/json');
-header('Access-Control-Allow-Methods:POST');
+header('Access-Control-Allow-Methods:GET');
 header('Access-Control-Allow-Headers:Content-Type,Access-Control-Allow-Headers,Authorization,X-Request-With');
 
 
@@ -26,10 +26,10 @@ if(mysqli_num_rows($result)>0){
         $atm_card_status=$row["status1"];
     }
     http_response_code(200);
-    echo json_encode(array("Account Number"=>$account_number,"Card Status"=>$atm_card_status));
+    echo json_encode(array("Account Number"=>$account_number,"Card Status"=>$atm_card_status,"Status"=>"True"));
 }
 else{
-    http_response_code(400);
+    http_response_code(204);
     echo json_encode(array('Message'=>'account doesn\'t Exist','Status '=>'False'));
 }
 }
