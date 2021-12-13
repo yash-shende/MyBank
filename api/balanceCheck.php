@@ -35,7 +35,7 @@ if($_SERVER["REQUEST_METHOD"]=="GET"){
     }
     
 
-if($length==12){
+if($length==11){
 
     $query = "SELECT updated FROM realtransaction ".$where;
     //echo $query;

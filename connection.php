@@ -1,7 +1,7 @@
 <?php
 $servername="localhost";
-$username="admin";
-$pd="admin";
+$username="root";
+$pd="";
 $dbname="bank";
 
 $conn=mysqli_connect($servername,$username,$pd,$dbname);
