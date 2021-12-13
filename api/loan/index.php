@@ -62,6 +62,9 @@ $method = $_SERVER['REQUEST_METHOD'];
             readAllUser($conn);
         }
         else{
+            if(!preg_match('/^\d+$/',$Received_id)){
+                status_message(400,"Invalid ID");            
+            }
             readUser($Received_id,$conn);
         } 
     }
@@ -180,6 +183,9 @@ $method = $_SERVER['REQUEST_METHOD'];
             echo json_encode(array("Message "=>"ID is Required"));
         }
         else{
+            if(!preg_match('/^\d+$/',$Received_id)){
+                status_message(400,"Invalid ID");            
+            }
             delUser($Received_id,$conn);
         }
     }

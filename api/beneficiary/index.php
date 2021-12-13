@@ -55,11 +55,14 @@ $method = $_SERVER['REQUEST_METHOD'];
 
 //GET USER Method for Read operations ============GET USER =====================GET USER =============GET USER ====================
    function doGet($conn){
-    $Received_id = isset($_GET['id']) ? $_GET['id'] :null;
+    $Received_id = isset($_GET['id']) ? $_GET['id'] :null;    
     if($Received_id==null){
         readAllUser($conn);
     }
     else{
+        if(!preg_match('/^\d+$/',$Received_id)){
+            status_message(400,"Invalid ID");            
+        }
         readUser($Received_id,$conn);
     } 
 }
@@ -123,7 +126,7 @@ function readUser($Received_id,$conn){
     //     "benacno": 123456789012,
     //     "branchname": "manewada",
     //     "bankname": "ICICI",
-    //     "ifsc": "123icici"
+    //     "ifsc": "123icici1
     // }
 
 }
@@ -164,6 +167,9 @@ function doPatch($conn,$data){
             echo json_encode(array("Message "=>"ID is Required"));
         }
         else{
+            if(!preg_match('/^\d+$/',$Received_id)){
+                status_message(400,"Invalid ID");            
+            }
             delUser($Received_id,$conn);
         }
     }

@@ -61,6 +61,9 @@ function doGet($conn){
         readAllUser($conn);
     }
     else{
+        if(!preg_match('/^\d+$/',$Received_id)){
+            status_message(400,"Invalid ID");            
+        }
         readUser($Received_id,$conn);
     }    
 }
@@ -71,8 +74,10 @@ function readAllUser($conn){
 
     if(mysqli_num_rows($result)>0){
         while($row = mysqli_fetch_assoc($result)){
-            echo json_encode($row);
+            $records[]= $row;
+            
         }
+        echo json_encode($records);
     }
 }
 
@@ -104,6 +109,9 @@ function doDelete($conn){
         echo json_encode(array("Message "=>"ID is Required"));
     }
     else{
+        if(!preg_match('/^\d+$/',$Received_id)){
+            status_message(400,"Invalid ID");            
+        }
         delUser($Received_id,$conn);
     }
 }
